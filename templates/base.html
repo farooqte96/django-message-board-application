@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Message Board</title>
+  <link rel="stylesheet" href="{% static "bower_components/bootstrap/dist/css/bootstrap.css" %}"/>
+  <link rel="stylesheet" href="{% static "bower_components/bootstrap/dist/css/bootstrap.min.css" %}"/>
+  <link rel="stylesheet" href="{% static "bower_components/bootstrap/dist/css/simple-sidebar.css" %}"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href = "{% static "css/stylesheet.css" %}"/>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand"><a href="#">Message Board App</a></li>
+                <li><a href="{% url "addMessage" %}">Create Message</a></li>
+                <li><a href="{% url "versions" %}">Show Messages</a></li>
+            </ul>
+        </div>
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <h1>Welcome to Message Board App</h1>
+                <p>Create and show messages</p><a class="btn btn-info" id="menu-toggle" href="#menu-toggle">Toggle Menu</a>
+                <br></br>
+                {% block content %}
+                {% endblock %}
+            </div>
+            <div class="container"><br>
+                <hr>
+                <footer>
+                    <p>CopyRight &copy, 2019</p>
+                </footer>
+            </div>
+            <script src="{% static "bower_components/jquery/jquery.min.js" %}"></script>
+            <script src="{% static "bower_components/bootstrap/dist/js/bootstrap.bundle.min.js" %}"></script>
+            <script>
+                $("#menu-toggle").click(function(e) {
+                    e.preventDefault();
+                    $("#wrapper").toggleClass("toggled");
+                });
+            </script>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class = "table-responsive">
+  {% if message_records %}
+    <table class="table"; id = {{choice.0}}>
+      <thead>
+        <th scope="col">Title</th>
+        <th scope="col">Content</th>
+        <th scope= "col">Sender</th>
+        {% if version == 1 %}
+        <th scope="col">URL</th>
+        {% endif %}
+        <th scope= "col">Edit</th>
+        <th scope= "col">Delete</th>
+      </thead>
+      {% for message in message_records %}
+      <tr>
+        <td>{{message.title}}</td>
+        <td>{{message.content}}</td>
+        <td>{{message.sender}}</td>
+        {% if version == 1 %}
+        <td>{{message.url}}</td>
+        {% endif %}
+        <td><a class="btn btn-primary" href={% url 'updateMessage' message_id=message.id %}>Edit</a></td>
+        <td><a class="btn btn-primary" href={% url 'deleteMessage' message_id=message.id %}>Delete</a></td>
+
+      </tr>
+      {% endfor %}
+    </table>
+    {% else %}
+    <p> No Message Found in Application DB</p>
+    {% endif %}
+</div>
+{% endblock %}
